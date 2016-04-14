@@ -1,0 +1,132 @@
+#JSGF V1.0;
+/**
+ * Simple JSGF Grammar
+f */
+grammar jsgf.hello;
+
+public <login> = ( Log in user ) ( sam | root | bro );
+
+
+public <usernames> = ( Jarvis | Ava | Bro | log in );
+
+public <greet> = ( hello  |  good morning | good night | good evening | good afternoon | how are you | how old are you | what is your name | what do you think | tell me the time | what is the time | what is the meaning of life | do you have feelings | what can you do | what do you do);
+
+public <basicCmd> = <startPolite> <command> <endPolite>;
+	<command> = <action> <object>;
+
+	<action> = /10/ open |/2/ close |/1/ delete |/1/ move ;
+
+	<object> = [the | a] (window | file | menu | command | mail | word | net fix | calculator |note pad | access | paint | task manager | Browser | device manager );
+	<startPolite> = (please | kindly | could you | can you ) *;
+	
+<endPolite> = [ please | thanks | thank you ];
+
+public <action> = (start | stop | open | close ) (excel | photo shop | note pad | fire wall | calculator);
+
+public <sleep_action> = (jarvis | ava) (chill | go to sleep | i need your help | wake up | pause | play);
+
+public <search> = (<search><startsearch> <conj><endsearch> | <search><startsearch> <conj><endsearch> <noun><adverb> | <search><startsearch> <conj><endsearch> <noun><adverb><verb> | <search><startsearch> <conj><endsearch>[<noun> | <pronoun>]<adverb>[<noun> | <pronoun>] |<search> <startsearch> <conj> [<noun> | <pronoun>]<adverb> [the | a] [<noun> | <pronoun>] |  <search><startsearch> <conj> [<noun> | <pronoun>]<adverb> [<noun> | <pronoun>] | <search> (noun | feeling | adj));
+	<startsearch> = ( why| what | when| where| why| how | how much | how many );
+	<conj> = (are | is | can | do |can | a | did | old | was | should | could );
+	<endsearch> = (you here | you think | are you | your name | you know | there );
+	<noun> = ( you | I | they | people | god | class | school | work | the body );
+	<pronoun> = ( you | me | he | she | I | we | them | us );
+	<adverb> = (want | need | is | were | was | am | find | hide | sell );
+	<adj> = ( long | hard | easy | hard | tired );
+	<verb> = ( made | sucked | watching );
+	<feeling> = ( happy | sad | tired | interested | sick | well | drunk | intrigued );
+	<search> = (search | look up | define) *;
+
+public <response> = (<startresponse> <conj><endresponse> | <feeling> | <startresponse> <conj><pronoun><feeling> | [<pronoun> | <noun>] [<conj> | <adverb>] [ <feeling> | <adj>]);
+	<startresponse> = ( who | what | when| where| why| how | how much | how many);
+	<conj> = (are | is | can | do |can | a | did | old | was );
+	<endresponse> = (you here | you think | are you | your name | you know);
+	<feeling> = ( happy | sad | tired | interested | sick | stupid | dumb | intelligent | well | drunk | intrigued );
+	<noun> = ( you | I | they | people | god | class | school | work );
+	<pronoun> = ( you | me | he | she | I | we | them | us);
+	<adverb> = (want | need | is | were | was | am );
+	<adj> = ( long | hard | easy | hard | tired);
+
+public <question> = (<startquestion> <conj><endquestion> | <startquestion><conj><endquestion><verb> |<startquestion> <conj><endquestion> <noun><adverb> | <startquestion> <conj><endquestion> <noun><adverb><verb> | <startquestion> <conj><endquestion>[<noun> | <pronoun>]<adverb>[<noun> | <pronoun>] |<startquestion> <conj> [<noun> | <pronoun>]<adverb> [the | a] [<noun> | <pronoun>] | <startquestion> <conj> [<noun> | <pronoun>]<adverb> [<noun> | <pronoun>]);
+	<startquestion> = ( why| what | when| where| why| how | how much | how many);
+	<conj> = (are | is | can | do |can | a | did | old | was | should | could | were );
+	<endquestion> = (you here | you think | are you | your name | you know | there);
+	<noun> = ( you | I | they | people | god | class | school | work | the body );
+	<pronoun> = ( you | me | he | she | I | we | them | us);
+	<adverb> = (want | need | is | were | was | am | find | hide | sell);
+	<adj> = ( long | hard | easy | hard | tired);
+	<verb> = ( made | sucked | watching );
+
+public <absoluteTime> =
+ ( set an alarm for <hour>  oh clock | set an alarm for <hour> [ <minute>  ] [ a m  | p m  ]);
+	<hour> =
+ ( one | two | three | four | five | six | seven | eight | nine | ten | eleven | twelve );
+
+	<minute> =
+( [oh] one
+ | [oh] two
+	 | [oh] three
+ | [oh] four | [oh] five
+ | [oh] six
+ | [oh] seven
+ | [oh] eight
+ | [oh] nine
+| ten		
+	 | eleven	
+	 | twelve	
+	 | thirteen 
+	 | fourteen 
+	 | fifteen  
+	 | sixteen  
+	 | seventeen
+	 | eighteen 
+	 | nineteen 
+		| twenty | (twenty ( one | two | three | four | five | six  | seven | eight | nine ))
+| thirty | (thirty ( one | two | three  | four | five  | six   | seven  | eight | nine ))
+| forty	| (forty ( one  | two | three | four | five | six  | seven | eight | nine )) 
+		| fifty  (fifty ( one | two | three | four | five | six  | seven | eight | nine  )));
+
+public <media_command> = <polite>*
+( <prevIndex> | <repeatIndex> | <nextIndex>
+ | <backup> | <forward>
+ | <slow> | <fast>
+ | <play> | <pause> | <stop>
+ | <mute> | <quieter> | <louder>
+) <polite>*;
+	<polite> = [pretty] please | ava;
+	<prevIndex> = ([go back to the] previous [index]) {prevIndex};
+
+	<repeatIndex> = (repeat [that] | play (it | that))  {repeatIndex} [again | one more time] [ava];
+
+	<nextIndex> = (skip [that] | [go to the] next [index]) {nextIndex};
+	<backup> = ([go] back) {backup};
+	
+<forward> = ([go] forward | on) {forward};
+	<slow> = slow [down] {slow};
+
+	<fast> = speed up {fast};
+	<play> = (start | play [music] | play [movie] | resume | go [on] | ok) {play};
+
+	<pause> = ((wait | hold [on]) [a (second | minute)] | pause) {pause};
+	<stop> = stop {stop};
+	<mute> = (shut up | shut down |  mute | let me hear you | speak to me ) {mute};
+	<quieter> = (quieter | turn it down) {quieter};
+	<louder> = (louder | turn it up) {louder};
+
+
+public <calc> =
+ ( What is  <number>  <operator> <number> );
+	<operator> =
+ ( times | minus| divided by| plus);
+
+	<number> =
+ (  one | two | three | four | five | six | seven | eight | nine | ten | eleven | twelve | thirteen  | fourteen  | fifteen   | sixteen   | seventeen | eighteen  | nineteen 
+	| twenty | (twenty ( one | two | three | four | five | six  | seven | eight | nine ))
+| thirty | (thirty ( one | two | three  | four | five  | six   | seven  | eight | nine ))
+| forty	| (forty ( one  | two | three | four | five | six  | seven | eight | nine )) 
+	| fifty  (fifty ( one | two | three | four | five | six  | seven | eight | nine  ))
+	| sixty  (sixty( one | two | three | four | five | six  | seven | eight | nine  ))
+	| seventy  (seventy( one | two | three | four | five | six  | seven | eight | nine  ))
+	| eighty (eighty( one | two | three | four | five | six  | seven | eight | nine  ))
+	| ninety (ninety( one | two | three | four | five | six  | seven | eight | nine  )));
+

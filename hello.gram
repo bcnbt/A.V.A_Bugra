@@ -1,0 +1,23 @@
+#JSGF V1.0;
+/**
+ * Simple JSGF Grammar
+ */
+grammar jsgf.hello;
+
+public <greet> = ( Ava | jarvis);
+
+public <greet> = ( hello  |  good morning | good night | good evening | how are you | how old are you | what is your name | what do you think);
+
+public <command> = ( Open | Close ) (command | mail | word | net fix | calculator | note pad | access | paint | task manager | Browser | device manager );
+
+public <action> = (start | stop ) (excel | photo shop | note pad | fire wall | recognizeing);
+
+public <action> = (play | pause ) (excel | photo shop | note pad | fire wall | recognizeing);
+
+public <action> = (go) (to sleep | to go girl | to face book | to mail);
+
+public <action> = (jarvis) (chill | go to sleep | i need your help | I need your help | wake up | pause | play);
+
+public <action> = (Ava) (chill | go to sleep | i need your help | I need your help | wake up | pause | play);
+
+public <net> = (site) (face book | go girl | mail);
